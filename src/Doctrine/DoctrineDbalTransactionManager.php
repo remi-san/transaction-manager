@@ -8,7 +8,7 @@ use RemiSan\TransactionManager\Exception\CommitException;
 use RemiSan\TransactionManager\Exception\RollbackException;
 use RemiSan\TransactionManager\Transactional;
 
-class DoctrineDbalTransactionManager implements Transactional
+final class DoctrineDbalTransactionManager implements Transactional
 {
     /**
      * @var Connection

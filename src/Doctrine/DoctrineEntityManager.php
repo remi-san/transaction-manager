@@ -8,7 +8,7 @@ use RemiSan\TransactionManager\Exception\CommitException;
 use RemiSan\TransactionManager\Exception\RollbackException;
 use RemiSan\TransactionManager\Transactional;
 
-class DoctrineEntityManager implements Transactional
+final class DoctrineEntityManager implements Transactional
 {
     /**
      * @var EntityManagerInterface
@@ -30,6 +30,10 @@ class DoctrineEntityManager implements Transactional
      */
     public function beginTransaction()
     {
+        if (!$this->entityManager->isOpen()) {
+            throw new BeginException('Entity Manager is closed');
+        }
+
         try {
             $this->entityManager->beginTransaction();
         } catch (\Exception $e) {

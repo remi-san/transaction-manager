@@ -18,12 +18,14 @@
         "henrikbjorn/phpspec-code-coverage": "^2.0",
         "doctrine/dbal": "^2.5",
         "doctrine/orm": "^2.5",
-        "evaneos/burrow": "^3.0"
+        "evaneos/burrow": "^3.0",
+        "league/event": "^2.1"
     },
     "suggest": {
         "doctrine/dbal": "To manage Doctrine DBAL transactions",
         "doctrine/orm": "To manage Doctrine EntityManager transactions",
-        "evaneos/burrow": "To manage AMQP message broking transactionally"
+        "evaneos/burrow": "To manage AMQP message broking transactionally",
+        "league/event": "To manage event emitting transactionally"
     },
     "autoload": {
         "psr-4": {

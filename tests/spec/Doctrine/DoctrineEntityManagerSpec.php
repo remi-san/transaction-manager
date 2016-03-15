@@ -20,6 +20,7 @@ class DoctrineEntityManagerSpec extends ObjectBehavior
 
     function it_should_begin_the_em_transaction(EntityManagerInterface $entityManager)
     {
+        $entityManager->isOpen()->willReturn(true);
         $entityManager->beginTransaction()->shouldBeCalledTimes(1);
 
         $this->beginTransaction();
@@ -27,7 +28,17 @@ class DoctrineEntityManagerSpec extends ObjectBehavior
 
     function it_should_throw_an_exception_if_em_transaction_begin_failed(EntityManagerInterface $entityManager)
     {
+        $entityManager->isOpen()->willReturn(true);
         $entityManager->beginTransaction()->willThrow('\Exception');
+
+        $this->shouldThrow('\RemiSan\TransactionManager\Exception\BeginException')
+             ->duringBeginTransaction();
+    }
+
+    function it_should_throw_an_exception_if_em_is_closed(EntityManagerInterface $entityManager)
+    {
+        $entityManager->isOpen()->willReturn(false);
+        $entityManager->beginTransaction()->shouldNotBeCalled();
 
         $this->shouldThrow('\RemiSan\TransactionManager\Exception\BeginException')
              ->duringBeginTransaction();

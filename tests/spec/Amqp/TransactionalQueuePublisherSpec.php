@@ -24,14 +24,7 @@ class TransactionalQueuePublisherSpec extends ObjectBehavior
             ->duringPublish('', '');
     }
 
-    function it_should_not_publish_event_before_commit(QueuePublisher $publisher)
-    {
-        $this->beginTransaction();
-        $publisher->publish('', '')->shouldNotBeCalled();
-        $this->publish('', '');
-    }
-
-    function it_should_publish_event_when_committing(QueuePublisher $publisher)
+    function it_should_publish_message_when_committing(QueuePublisher $publisher)
     {
         $this->beginTransaction();
         $publisher->publish('', '')->shouldBeCalled();
@@ -39,7 +32,7 @@ class TransactionalQueuePublisherSpec extends ObjectBehavior
         $this->commit();
     }
 
-    function it_should_not_publish_event_when_rollbacking(QueuePublisher $publisher)
+    function it_should_not_publish_message_when_rollbacking(QueuePublisher $publisher)
     {
         $this->beginTransaction();
         $publisher->publish('', '')->shouldNotBeCalled();

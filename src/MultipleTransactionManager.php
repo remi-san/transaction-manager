@@ -4,7 +4,7 @@ namespace RemiSan\TransactionManager;
 
 use RemiSan\TransactionManager\Exception\NoRunningTransactionException;
 
-class MultipleTransactionManager extends SimpleTransactionManager
+final class MultipleTransactionManager extends SimpleTransactionManager
 {
     /**
      * @var int number of transactions currently running

@@ -6,7 +6,7 @@ use Burrow\QueuePublisher;
 use RemiSan\TransactionManager\Exception\TransactionException;
 use RemiSan\TransactionManager\Transactional;
 
-class TransactionalQueuePublisher implements QueuePublisher, Transactional
+final class TransactionalQueuePublisher implements QueuePublisher, Transactional
 {
     /** @var QueuePublisher */
     private $publisher;
@@ -32,15 +32,15 @@ class TransactionalQueuePublisher implements QueuePublisher, Transactional
     /**
      * {@inheritdoc}
      */
-    public function publish($data, $routingKey = "")
+    public function publish($data, $routingKey = '')
     {
         if (!$this->running) {
-            throw new TransactionException('');
+            throw new TransactionException('Cannot publish outside a transaction');
         }
 
         $this->messages[] = [
             'data' => $data,
-            'routingKey' => $routingKey
+            'routingKey' => $routingKey,
         ];
     }
 
@@ -61,6 +61,7 @@ class TransactionalQueuePublisher implements QueuePublisher, Transactional
         foreach ($this->messages as $message) {
             $this->publisher->publish($message['data'], $message['routingKey']);
         }
+        $this->messages = [];
         $this->running = false;
     }
 
