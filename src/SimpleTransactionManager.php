@@ -102,7 +102,7 @@ class SimpleTransactionManager implements TransactionManager
     }
 
     /**
-     * Reset the transactions.
+     * Reset the transaction.
      */
     private function reset()
     {
