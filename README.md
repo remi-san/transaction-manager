@@ -8,3 +8,24 @@
 [![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/remi-san/transaction-manager.svg?style=flat-square)](https://scrutinizer-ci.com/g/remi-san/transaction-manager/code-structure)
 
 A simple transaction manager with a naive implementation.
+
+It provides a common interface to manage transactions.
+
+If you want to make a class transactional, implement the `Transactional` interface.
+
+Transaction Manager
+-------------------
+Two `TransactionManager` implementations are provided allowing you to manage multiple `Transactional` classes in the same logic transaction.
+
+- `SimpleTransactionManager` is a naive implementation preventing from beginning a transaction more than once.
+- `MultipleTransactionManager` allows you to begin the transaction more than once but only commits if `commit` is called the same number of times as `beginTransaction`.
+
+Implementations
+---------------
+Some `Transactional` implementations are provided:
+
+ - `TransactionalQueuePublisher` to publish in an AMQP queue with [`Burrow`](https://github.com/Evaneos/Burrow) in a transaction
+ - `DoctrineDbalTransactionManager` to deal with [`Doctrine DBAL`](https://github.com/doctrine/dbal) transactions
+ - `DoctrineEntityManager` to deal with [`Doctrine ORM`](https://github.com/doctrine/doctrine2) transactions
+ - `TransactionalEmitter` to emit `Events` with the [`PHP League` lib](https://github.com/thephpleague/event) in a transaction
+ 

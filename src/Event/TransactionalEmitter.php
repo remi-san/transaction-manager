@@ -96,7 +96,6 @@ final class TransactionalEmitter implements EmitterInterface, Transactional
      */
     public function beginTransaction()
     {
-        $this->events = [];
         $this->running = true;
     }
 

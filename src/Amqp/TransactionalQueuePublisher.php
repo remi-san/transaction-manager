@@ -49,7 +49,6 @@ final class TransactionalQueuePublisher implements QueuePublisher, Transactional
      */
     public function beginTransaction()
     {
-        $this->messages = [];
         $this->running = true;
     }
 
