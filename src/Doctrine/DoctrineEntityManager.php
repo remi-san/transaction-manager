@@ -47,6 +47,7 @@ final class DoctrineEntityManager implements Transactional
     public function commit()
     {
         try {
+            $this->entityManager->flush();
             $this->entityManager->commit();
         } catch (\Exception $e) {
             throw new CommitException('Cannot commit Doctrine ORM transaction', $e->getCode(), $e);

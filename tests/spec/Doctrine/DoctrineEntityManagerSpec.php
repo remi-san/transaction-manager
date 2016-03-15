@@ -46,6 +46,7 @@ class DoctrineEntityManagerSpec extends ObjectBehavior
 
     function it_should_commit_the_em_transaction(EntityManagerInterface $entityManager)
     {
+        $entityManager->flush()->shouldBeCalledTimes(1);
         $entityManager->commit()->shouldBeCalledTimes(1);
 
         $this->commit();
@@ -53,6 +54,7 @@ class DoctrineEntityManagerSpec extends ObjectBehavior
 
     function it_should_throw_an_exception_if_em_transaction_commit_failed(EntityManagerInterface $entityManager)
     {
+        $entityManager->flush()->shouldBeCalledTimes(1);
         $entityManager->commit()->willThrow('\Exception');
 
         $this->shouldThrow('\RemiSan\TransactionManager\Exception\CommitException')
