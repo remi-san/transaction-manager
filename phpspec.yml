@@ -1,0 +1,16 @@
+formatter.name: pretty
+suites:
+    src:
+        namespace: RemiSan\TransactionManager
+        psr4_prefix: RemiSan\TransactionManager
+        spec_path: ./tests
+        src_path: src
+extensions:
+  - PhpSpec\Extension\CodeCoverageExtension
+code_coverage:
+  format:
+    - html
+    - clover
+  output:
+    html: tests/coverage
+    clover: tests/coverage.xml
