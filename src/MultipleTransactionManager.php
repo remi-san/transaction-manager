@@ -16,7 +16,7 @@ class MultipleTransactionManager extends SimpleTransactionManager
      */
     public function beginTransaction()
     {
-        $this->transactionCpt++;
+        ++$this->transactionCpt;
 
         if ($this->transactionCpt === 1) {
             parent::beginTransaction();
@@ -28,7 +28,7 @@ class MultipleTransactionManager extends SimpleTransactionManager
      */
     public function commit()
     {
-        $this->transactionCpt--;
+        --$this->transactionCpt;
 
         if ($this->transactionCpt < 0) {
             throw new NoRunningTransactionException('Cannot commit before a transaction has begun');
@@ -52,10 +52,11 @@ class MultipleTransactionManager extends SimpleTransactionManager
     }
 
     /**
-     * Reset the transaction.
+     * {@inheritdoc}
      */
-    private function reset()
+    protected function reset()
     {
+        parent::reset();
         $this->transactionCpt = 0;
     }
 }

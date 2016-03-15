@@ -14,7 +14,7 @@ class SimpleTransactionManager implements TransactionManager
     private $items;
 
     /**
-     * @var int
+     * @var bool
      */
     private $running;
 
@@ -104,7 +104,7 @@ class SimpleTransactionManager implements TransactionManager
     /**
      * Reset the transaction.
      */
-    private function reset()
+    protected function reset()
     {
         $this->running = false;
     }

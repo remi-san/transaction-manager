@@ -15,7 +15,15 @@
         "fabpot/php-cs-fixer": "^1.10",
         "squizlabs/php_codesniffer": "^2.0",
         "phpspec/phpspec": "^2.2",
-        "henrikbjorn/phpspec-code-coverage": "^2.0"
+        "henrikbjorn/phpspec-code-coverage": "^2.0",
+        "doctrine/dbal": "^2.5",
+        "doctrine/orm": "^2.5",
+        "evaneos/burrow": "^3.0"
+    },
+    "suggest": {
+        "doctrine/dbal": "To manage Doctrine DBAL transactions",
+        "doctrine/orm": "To manage Doctrine EntityManager transactions",
+        "evaneos/burrow": "To manage AMQP message broking transactionally"
     },
     "autoload": {
         "psr-4": {
