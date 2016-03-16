@@ -6,6 +6,8 @@
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 [![Packagist Version](https://img.shields.io/packagist/v/remi-san/transaction-manager.svg?style=flat-square)](https://packagist.org/packages/remi-san/transaction-manager)
 [![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/remi-san/transaction-manager.svg?style=flat-square)](https://scrutinizer-ci.com/g/remi-san/transaction-manager/code-structure)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/f83d5077-8374-4fbd-a20c-b2aba6c496af/small.png)](https://insight.sensiolabs.com/projects/f83d5077-8374-4fbd-a20c-b2aba6c496af)
+
 
 A simple transaction manager with a naive implementation.
 
@@ -28,4 +30,3 @@ Some `Transactional` implementations are provided:
  - `DoctrineDbalTransactionManager` to deal with [`Doctrine DBAL`](https://github.com/doctrine/dbal) transactions
  - `DoctrineEntityManager` to deal with [`Doctrine ORM`](https://github.com/doctrine/doctrine2) transactions
  - `TransactionalEmitter` to emit `Events` with the [`PHP League` lib](https://github.com/thephpleague/event) in a transaction
- 
