@@ -19,13 +19,15 @@
         "doctrine/dbal": "^2.5",
         "doctrine/orm": "^2.5",
         "evaneos/burrow": "^3.0",
-        "league/event": "^2.1"
+        "league/event": "^2.1",
+        "league/tactician": "^1.0"
     },
     "suggest": {
         "doctrine/dbal": "To manage Doctrine DBAL transactions",
         "doctrine/orm": "To manage Doctrine EntityManager transactions",
         "evaneos/burrow": "To manage AMQP message broking transactionally",
-        "league/event": "To manage event emitting transactionally"
+        "league/event": "To manage event emitting transactionally",
+        "league/tactician": "To manage command emitting transactionally"
     },
     "autoload": {
         "psr-4": {

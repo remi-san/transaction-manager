@@ -30,3 +30,4 @@ Some `Transactional` implementations are provided:
  - `DoctrineDbalTransactionManager` to deal with [`Doctrine DBAL`](https://github.com/doctrine/dbal) transactions
  - `DoctrineEntityManager` to deal with [`Doctrine ORM`](https://github.com/doctrine/doctrine2) transactions
  - `TransactionalEmitter` to emit `Events` with the [`PHP League` lib](https://github.com/thephpleague/event) in a transaction
+ - `TransactionalCommandBus` to handle `Commands` with the [`PHP League` lib](https://github.com/thephpleague/tactician) in a transaction
