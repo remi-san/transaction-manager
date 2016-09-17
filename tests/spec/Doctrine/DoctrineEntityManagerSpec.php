@@ -75,4 +75,24 @@ class DoctrineEntityManagerSpec extends ObjectBehavior
         $this->shouldThrow('\RemiSan\TransactionManager\Exception\RollbackException')
              ->duringRollback();
     }
+
+    function it_should_close_em_if_em_transaction_rollback_is_on_closeEntityManagerOnRollback_mode(EntityManagerInterface $entityManager)
+    {
+        $this->beConstructedWith($entityManager, true);
+
+        $entityManager->rollback()->shouldBeCalledTimes(1);
+        $entityManager->close()->shouldBeCalledTimes(1);
+
+        $this->rollback();
+    }
+
+    function it_should_not_close_em_if_em_transaction_rollback_is_not_on_closeEntityManagerOnRollback_mode(EntityManagerInterface $entityManager)
+    {
+        $this->beConstructedWith($entityManager, false);
+
+        $entityManager->rollback()->shouldBeCalledTimes(1);
+        $entityManager->close()->shouldBeCalledTimes(0);
+
+        $this->rollback();
+    }
 }
