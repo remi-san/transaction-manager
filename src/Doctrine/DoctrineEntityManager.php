@@ -14,15 +14,21 @@ final class DoctrineEntityManager implements Transactional
      * @var EntityManagerInterface
      */
     private $entityManager;
+    /**
+     * @var bool
+     */
+    private $closeEntityManagerOnRollback;
 
     /**
      * Constructor.
      *
      * @param EntityManagerInterface $entityManager
+     * @param bool $closeEntityManagerOnRollback
      */
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(EntityManagerInterface $entityManager, $closeEntityManagerOnRollback = false)
     {
         $this->entityManager = $entityManager;
+        $this->closeEntityManagerOnRollback = $closeEntityManagerOnRollback;
     }
 
     /**
@@ -63,6 +69,10 @@ final class DoctrineEntityManager implements Transactional
             $this->entityManager->rollback();
         } catch (\Exception $e) {
             throw new RollbackException('Cannot rollback Doctrine ORM transaction', $e->getCode(), $e);
+        }
+
+        if ($this->closeEntityManagerOnRollback) {
+            $this->entityManager->close();
         }
     }
 }
