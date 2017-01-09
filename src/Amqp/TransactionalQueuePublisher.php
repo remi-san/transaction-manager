@@ -32,7 +32,7 @@ final class TransactionalQueuePublisher implements QueuePublisher, Transactional
     /**
      * {@inheritdoc}
      */
-    public function publish($data, $routingKey = '')
+    public function publish($data, $routingKey = '', array $headers = [])
     {
         if (!$this->running) {
             throw new TransactionException('Cannot publish outside a transaction');
@@ -41,6 +41,7 @@ final class TransactionalQueuePublisher implements QueuePublisher, Transactional
         $this->messages[] = [
             'data' => $data,
             'routingKey' => $routingKey,
+            'headers' => $headers
         ];
     }
 
@@ -58,7 +59,7 @@ final class TransactionalQueuePublisher implements QueuePublisher, Transactional
     public function commit()
     {
         foreach ($this->messages as $message) {
-            $this->publisher->publish($message['data'], $message['routingKey']);
+            $this->publisher->publish($message['data'], $message['routingKey'], $message['headers']);
         }
         $this->messages = [];
         $this->running = false;
