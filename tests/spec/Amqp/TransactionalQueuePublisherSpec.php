@@ -27,7 +27,7 @@ class TransactionalQueuePublisherSpec extends ObjectBehavior
     function it_should_publish_message_when_committing(QueuePublisher $publisher)
     {
         $this->beginTransaction();
-        $publisher->publish('', '')->shouldBeCalled();
+        $publisher->publish('', '', [])->shouldBeCalled();
         $this->publish('', '');
         $this->commit();
     }
@@ -35,7 +35,7 @@ class TransactionalQueuePublisherSpec extends ObjectBehavior
     function it_should_not_publish_message_when_rollbacking(QueuePublisher $publisher)
     {
         $this->beginTransaction();
-        $publisher->publish('', '')->shouldNotBeCalled();
+        $publisher->publish('', '', [])->shouldNotBeCalled();
         $this->publish('', '');
         $this->rollback();
     }
