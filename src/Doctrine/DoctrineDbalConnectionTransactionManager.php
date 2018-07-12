@@ -34,7 +34,7 @@ final class DoctrineDbalConnectionTransactionManager implements Transactional
         try {
             $this->dbalConnection->beginTransaction();
         } catch (\Exception $e) {
-            throw new BeginException('Cannot begin Doctrine DBAL transaction');
+            throw new BeginException('Cannot begin Doctrine DBAL transaction', 0, $e);
         }
     }
 
@@ -46,7 +46,7 @@ final class DoctrineDbalConnectionTransactionManager implements Transactional
         try {
             $this->dbalConnection->commit();
         } catch (ConnectionException $e) {
-            throw new CommitException('Cannot commit Doctrine DBAL transaction');
+            throw new CommitException('Cannot commit Doctrine DBAL transaction', 0, $e);
         }
     }
 
@@ -56,9 +56,9 @@ final class DoctrineDbalConnectionTransactionManager implements Transactional
     public function rollback()
     {
         try {
-            $this->dbalConnection->commit();
+            $this->dbalConnection->rollBack();
         } catch (ConnectionException $e) {
-            throw new RollbackException('Cannot rollback Doctrine DBAL transaction');
+            throw new RollbackException('Cannot rollback Doctrine DBAL transaction', 0, $e);
         }
     }
 }
